@@ -1,0 +1,15 @@
+if class c{}; is defined then
+
+size = 1
+
+class C
+{
+C();	//constructor
+~C();	//destructor
+C(const C & );	//copy constructor
+C& operator = (const C &);	//assignment operator
+C* operator &();	//non-constant addressof operator
+const C* operator &() const;	//constant addressof operator
+};
+
+

@@ -1,0 +1,76 @@
+void memcopy(void* src, void* dest, int size) {
+    char * src1, *dest1;
+    src1 = (char*) src;
+    dest1 = (char*) dest;
+    
+    while(size) {
+        *dest1 = *src1;
+        dest1++; // dest1 = dest1 + (sign);
+        src1++;
+        size--;
+    }
+}
+
+src 100
+dest 125
+size 50
+
+left is prev
+right is next
+
+node* treeToLL(node* root, node* prev, node* head) {
+    if (root==NULL)
+        return;
+    treeToLL(root->left, prev, head);
+    root->left = prev; //prev
+    if(prev)
+        prev->right = root; //next
+    else
+        head = root;
+    
+    node* right = root->right;
+    head->left = root;
+    root->right = head;
+    prev = root;
+    treeToLL(right, prev, head);   
+}
+
+     4
+  2     5
+1  3
+
+1
+
+1 2 3 4 5
+
+1 2 3 3
+3 4 5
+void exor(int* a, int m, int* b, int n) {
+    int i=0, j=0;
+    while(i<m && j<n) {
+        if (a[i] == b[j]) {
+            while((i+1 < m) && a[i]==a[i+1])
+                i++;
+            i++;
+            while((j+1 < n) && b[j] == b[j+1])
+                j++;
+            j++;
+        }
+        else if (a[i] < b[j]) {
+            printf("%d", a[i]);
+            i++;
+        }
+        else if (b[j] < a[i]) {
+            printf("%d", b[j]);
+            j++;
+        }
+    }
+    while(i<m) {
+        printf("%d", a[i]);
+        i++;
+    }
+    while(j<n) {
+        printf("%d", b[j]);
+        j++;
+    }
+}

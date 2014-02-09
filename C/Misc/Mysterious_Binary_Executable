@@ -1,0 +1,10 @@
+You are trying to to daemonize an unknown, black-box binary executable. The binary executable returns no output to STDOUT or STDERR. Assume that the mystery binary return code is non-zero. What troubleshooting steps might you take to learn more about what the binary is supposed to do, and why it is failing?
+
+1. ldd - dependency libraries
+2. nm - symbols
+3. objdump - 
+4. ps - if it is spawning
+5. top - memory used
+6. check for error codes from the used libaries or system calls
+7. check if files, pipes or sockets are being used by it
+9. Run in debugger

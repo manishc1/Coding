@@ -1,0 +1,56 @@
+Given a Binary Tree (not BST), print the minimum element in each leg. Leg means a path from the root to the leaf.
+Eg:-
+                 9
+                / \
+               5   10
+              /\   / \
+             1  6  2  12
+
+Result : 1 5 2 9             
+
+struct Node {
+    int val;
+    Node *lNode;
+    Node *rNode;
+};
+
+void printMinInLeg(Node* root, int minSoFar) {
+    if (root == NULL)
+        return;
+        
+    if((root->left == NULL) && (root->right == NULL)) {
+        printf("%d", min(minSoFar, root->val))
+        return;
+    }
+    
+    printMinInLeg(root->left, min(minSoFar, root->val));
+    printMinInLeg(root->right, min(minSoFar, root->val));
+}
+
+printMinInLeg(root, INT_MAX);
+
+
+class Base {
+public:
+    Base() {
+        cout << "Base constructed" << endl;
+    }
+    
+    virtual ~Base() {
+        cout << "Base destroyed" << endl;
+    }
+};
+
+class D : public Base {
+public:
+    D() {
+        cout << "D constructed" << endl;
+    }
+    
+    ~D() {
+        cout << "D destroyed" << endl;
+    }
+};
+
+Base *b = new D()
+delete b;
