@@ -1,4 +1,4 @@
-/*
+*
 All subsets of a set
 */
 

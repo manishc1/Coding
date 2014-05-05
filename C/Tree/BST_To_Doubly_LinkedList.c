@@ -1,7 +1,43 @@
-typedef struct node {
-		int data;
-		node *left, *right, *next, *prev;
-} node;
+tyedef struct Node {
+		int val;
+		Node *leftprev, *rightnext;
+} Node;
+
+Node* tree_to_doublyll(Node* root) {
+		Stack s;
+		Node *curr = root, *head = NULL, *tail = NULL;
+
+		// push all left
+		while(curr) {
+				push(s, curr);
+				curr = curr->leftprev;
+		}
+
+		while(!isEmpty(s)) {
+				curr = pop(s);
+				if (head == NULL) {
+						curr->leftprev = NULL;
+						head = tail = curr;
+				} else {
+						tail->rightnext = curr;
+						curr->leftprev = tail;
+						tail = curr;
+				}
+
+				curr = curr->rightnext;
+				while(curr) {
+						push(s, curr);
+				}				
+		}
+
+		// if circular linked list
+		tail->rightnext = head;
+		head->leftprev = tail;
+
+		return head;
+}
+
+// -----------------------------------------------------------------------------
 
 //Better
 
@@ -38,6 +74,14 @@ Node* treeToDoublyList(Node *root) {
   return head;
 }
 
+
+// -----------------------------------------------------------------------------
+
+
+typedef struct node {
+		int data;
+		node *left, *right, *next, *prev;
+} node;
 
 
 node * convertBSTToDoublyLinkedList (node *root, node *succ) {

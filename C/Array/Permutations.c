@@ -35,7 +35,28 @@ void permute (int *a, int alen, int *b, int blen) {
 		}	
 }
 
+void swap(int* x, int* y) {
+		int temp;
+		temp = *x;
+		*x = *y;
+		*y = temp;
+}
+
+void permuteInPlace(int* a, int alen, int index) {
+		int i;
+		if (alen == index) {
+				print(a, alen);
+				return;
+		}
+		for(i=index; i<alen; i++) {
+				swap(&a[i], &a[index]);
+				permuteInPlace(a, alen, index+1);
+				swap(&a[i], &a[index]);
+		}
+}
+
 void main () {
 		int a[10] = {9,8,1}, b[10] ;
-		permute (a, 3, b, 0);
+		//permute (a, 3, b, 0);
+		permuteInPlace(a, 3, 0);
 }

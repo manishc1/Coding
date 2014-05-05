@@ -89,9 +89,34 @@ void interleavepermutations(char *a, int alen, char *b, int blen, char *sofar, i
 		interleavepermutations(a, alen, &b[1], blen-1, sofar, sofarlen+1);
 }
 
+void swap(char *x, char* y) {
+		char z;
+		z = *x;
+		*x = *y;
+		*y = z;
+}
+
+void duplicatePermute(char* str, int i) {
+		int j;
+		char visited[256] = {0};
+		if(str[i] == '\0') {
+				printf("%s\n", str);
+				return;
+		}
+
+		for(j=i; str[j]!='\0'; j++) {
+				if(visited[str[j]])
+						continue;
+				swap(&str[i], &str[j]);
+				duplicatePermute(str, i+1);
+				swap(&str[i], &str[j]);
+				visited[str[i]] = 1;
+		}
+}
 void main(){
-		char a[10]="ab", b[10]="cd", null[2]="";
+		char a[10]="aab", b[10]="cd", null[2]="";
 		//permute(null, str);
 		//allpermutations(a, strlen(a), null, 0);
-		interleavepermutations(a, strlen(a), b, strlen(b), null, 0);
+		//interleavepermutations(a, strlen(a), b, strlen(b), null, 0);
+		duplicatePermute(a,0);
 }
