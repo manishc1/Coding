@@ -24,7 +24,8 @@ int is_first_player_winner (int n)
   
   /* Consider the first two moves in the game
    They can be one of the following: (2,2), (2,9), (9,2), (9,9) */
-                                                                              // case 2,2              
+  
+  // case 2,2              
   int win_2_2 = is_first_player_winner (ceil((float)n/4));
 
   // case 2,9 or 9,2 
